@@ -1,0 +1,62 @@
+{
+  "Den Haag": {
+    "Position": {
+      "Longitude": 4.3006999,
+      "Latitude": 52.0704978
+    }
+  },
+  "Scheveningen": {
+    "Position": {
+      "Longitude": 4.302183,
+      "Latitude": 52.102401
+    }
+  },
+  "Voorburg": {
+    "Position": {
+      "Longitude": 4.3625406,
+      "Latitude": 52.0761581
+    }
+  },
+  "Delft": {
+    "Position": {
+      "Longitude": 4.3570677,
+      "Latitude": 52.0115769
+    }
+  },
+  "Rijswijk": {
+    "Position": {
+      "Longitude": 4.3219738,
+      "Latitude": 52.0376977
+    }
+  },
+  "Pijnacker": {
+    "Position": {
+      "Longitude": 4.431991,
+      "Latitude": 52.0194446
+    }
+  },
+  "Zoetermeer": {
+    "Position": {
+      "Longitude": 4.494025,
+      "Latitude": 52.060669
+    }
+  },
+  "Leidschendam": {
+    "Position": {
+      "Longitude": 4.3996122,
+      "Latitude": 52.0798176
+    }
+  },
+  "Wassenaar": {
+    "Position": {
+      "Longitude": 4.4012129,
+      "Latitude": 52.1429096
+    }
+  },
+  "Leiden": {
+    "Position": {
+      "Longitude": 4.497010,
+      "Latitude": 52.160114
+    }
+  }
+}
