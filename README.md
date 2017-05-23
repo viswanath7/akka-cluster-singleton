@@ -47,3 +47,31 @@ A persistent actor handles two types of messages namely **_command_** and **_eve
 
 ![Akka persistence](docs/akka-persistence.png)
 
+### Our application
+
+This application implements akka cluster singleton for taxi dispatcher use case. The actors of our system are 
+ - **_Customer:_** A regular actor that orders a taxi. It uses the proxy for singleton to place an order.
+ - **_Taxi Dispatcher:_** A persistent actor that is contacted solely via its singleton i.e. taxiDispatcherSingletonProxy. The singleton holds state by saving a set of registered taxi drivers and taxi orders from customers. 
+ When a registered taxi driver polls and checks for a ride request, a taxi ride order from customer is allocated to the taxi driver.
+ - **_Taxi Driver:_** A regular actor that first registers with the taxi dispatcher and then periodically checks for ride requests from customers.
+
+![Taxi dispatcher application](docs/taxi-dispatcher.png)  
+  
+#### Summary of actors
+
+| Actors         | Singleton | Persistent Actor | Request messages                                                   |
+|----------------|-----------|------------------|--------------------------------------------------------------------|
+| Customer       | No        | No               | OrderRide                                                          |
+| TaxiDispatcher | Yes       | Yes              | RequestTaxiCommand, RegisterDriverCommand, CheckRideRequestCommand |
+| TaxiDriver     | No        | No               | Drive, WorkUnavailable, UnAuthorised                               |
+
+#### Mapping between commands received by TaxiDispatcher singleton and events it generate
+
+| Sender          | Command                 | Event                    | Response                 | Receiver                 |
+| --------------- | ----------------------- |------------------------- |------------------------- |------------------------- |
+| TaxiDriver      | RequestTaxiCommand      | DriverRegisteredEvent    |                          |                          |
+| TaxiDriver      | CheckRideRequestCommand |                          | UnAuthorised             | TaxiDriver               |
+| TaxiDriver      | CheckRideRequestCommand |                          | WorkUnavailable          | TaxiDriver               |
+| TaxiDriver      | CheckRideRequestCommand | RideAllocatedEvent       | Drive                    | TaxiDriver               |
+| Customer        | RequestTaxiCommand      | TaxiRequestReceivedEvent |                          |                          |  
+  
